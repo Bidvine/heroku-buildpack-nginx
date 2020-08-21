@@ -62,8 +62,9 @@ fi
   # We also expect a socket to be at /tmp/nginx.socket.
   echo 'buildpack=openresty at=nginx-start'
   export LD_LIBRARY_PATH=nginx/bin/openresty/luajit/lib:$LD_LIBRARY_PATH
-  errorMsg=$(nginx/bin/openresty/nginx/sbin/nginx -p . -c nginx/config/nginx.conf)
-  echo $errorMsg
+  ls -l nginx/bin/openresty/nginx/sbin
+  ls -l nginx/config
+  nginx/bin/openresty/nginx/sbin/nginx -p . -c nginx/config/nginx.conf
   echo 'nginx' >$psmgr
 ) &
 
