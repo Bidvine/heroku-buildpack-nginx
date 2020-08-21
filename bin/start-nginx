@@ -61,9 +61,9 @@ fi
   # We expect nginx to run in foreground.
   # We also expect a socket to be at /tmp/nginx.socket.
   echo 'buildpack=openresty at=nginx-start'
-  pwd
   export LD_LIBRARY_PATH=nginx/bin/openresty/luajit/lib:$LD_LIBRARY_PATH
-  nginx/bin/openresty/nginx/sbin/nginx -p . -c nginx/config/nginx.conf
+  errorMsg=$(nginx/bin/openresty/nginx/sbin/nginx -p . -c nginx/config/nginx.conf)
+  echo $errorMsg
   echo 'nginx' >$psmgr
 ) &
 
