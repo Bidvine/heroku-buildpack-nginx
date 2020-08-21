@@ -47,7 +47,7 @@ then
   FILE="/tmp/app-initialized"
 
   # We block on app-initialized so that when nginx binds to $PORT
-  # are app is ready for traffic.
+  # the app is ready for traffic.
   while [[ ! -f "$FILE" ]]
   do
     echo 'buildpack=openresty at=app-initialization'
@@ -61,6 +61,7 @@ fi
   # We expect nginx to run in foreground.
   # We also expect a socket to be at /tmp/nginx.socket.
   echo 'buildpack=openresty at=nginx-start'
+  pwd
   export LD_LIBRARY_PATH=nginx/bin/openresty/luajit/lib:$LD_LIBRARY_PATH
   nginx/bin/openresty/nginx/sbin/nginx -p . -c nginx/config/nginx.conf
   echo 'nginx' >$psmgr
